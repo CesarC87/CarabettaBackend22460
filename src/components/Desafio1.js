@@ -20,13 +20,13 @@ const Desafio1 = () => {
     const FullName = PERSONA.getFullName();
     
     function Mostrar() {
-        Display.innerHTML = FullName ;
+        Display.textContent = FullName ;
     }
 
     return (
         <div>
             <button onClick={Mostrar}>Mostrar Nombre</button>
-            <span className="Display"></span>
+            <p className="Display"></p>
         </div>
     )
 }
