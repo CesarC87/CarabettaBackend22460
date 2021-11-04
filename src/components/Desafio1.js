@@ -1,24 +1,32 @@
 import React from 'react'
+import "../components/Desafio1.css"
 
 const Desafio1 = () => {
 
     class Usuario {
         constructor(nombre, apellido, libros, mascotas){
-            nombre = this.nombre;
-            apellido = this.apellido;
-            libros = this.libros;
-            mascotas = this.mascotas;
+           this.nombre = nombre;
+           this.apellido = apellido; 
+           this.libros = libros; 
+           this.mascotas = mascotas;
         }
         getFullName() {
-            console.log(Usuario.nombre)
+            return `${this.nombre} ${this.apellido}`;
         }
     }
     
     const PERSONA = new Usuario("juan", "Carlos", ["Harry Potter","Jurassic Park"],["Perro", "Gato"])
+    const Display = document.querySelector(".Display")
+    const FullName = PERSONA.getFullName();
+    
+    function Mostrar() {
+        Display.innerHTML = FullName ;
+    }
 
     return (
         <div>
-            <button onClick={PERSONA.getFullName}>Click Aqui</button>
+            <button onClick={Mostrar}>Mostrar Nombre</button>
+            <span className="Display"></span>
         </div>
     )
 }
