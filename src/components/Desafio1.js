@@ -14,16 +14,18 @@ const Desafio1 = () => {
             return `${this.nombre} ${this.apellido}`;
         }
         addMascota(nombreMascota) {
-            return this.mascotas.push(nombreMascota);
+            this.mascotas.push(nombreMascota);
         }
         countMascotas() {
             return this.mascotas.length;
         }
         addBook(nombre, autor){
-            return this.libros.push({nombre,autor})
+            return this.libros.push({nombre:nombre,autor:autor})
         }
         getBookNames() {
-            return this.libros.nombre
+            this.libros.forEach(libro => {
+                return libro.nombre;
+            });
         }
     }
     
@@ -36,6 +38,7 @@ const Desafio1 = () => {
     console.log(PERSONA.addBook("Conan","Juanpe"))
     console.log(PERSONA.libros)
     console.log(PERSONA.getBookNames())
+    
    
 
     return (
