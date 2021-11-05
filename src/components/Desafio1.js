@@ -13,20 +13,34 @@ const Desafio1 = () => {
         getFullName() {
             return `${this.nombre} ${this.apellido}`;
         }
+        addMascota(nombreMascota) {
+            return this.mascotas.push(nombreMascota);
+        }
+        countMascotas() {
+            return this.mascotas.length;
+        }
+        addBook(nombre, autor){
+            return this.libros.push({nombre,autor})
+        }
+        getBookNames() {
+            return this.libros.nombre
+        }
     }
     
-    const PERSONA = new Usuario("juan", "Carlos", ["Harry Potter","Jurassic Park"],["Perro", "Gato"])
-    const Display = document.querySelector(".Display")
-    const FullName = PERSONA.getFullName();
+    const PERSONA = new Usuario("juan", "Carlos", [{nombre: 'Jurassic Park',autor: 'Stephen King'}, {nombre: 'Transformers', autor: 'Michael Bay'}],["Perro", "Gato"])
     
-    function Mostrar() {
-        Display.textContent = FullName ;
-    }
+    console.log(PERSONA.getFullName())
+    PERSONA.addMascota("Cocodrilo")
+    console.log(PERSONA.mascotas)
+    console.log(PERSONA.countMascotas())
+    console.log(PERSONA.addBook("Conan","Juanpe"))
+    console.log(PERSONA.libros)
+    console.log(PERSONA.getBookNames())
+   
 
     return (
-        <div>
-            <button onClick={Mostrar}>Mostrar Nombre</button>
-            <p className="Display"></p>
+        <div>            
+            <p className="Display"></p>            
         </div>
     )
 }
