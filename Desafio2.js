@@ -1,3 +1,4 @@
+const { error } = require('console');
 const fs = require('fs');
 const { arch } = require('os');
 
@@ -5,50 +6,73 @@ const { arch } = require('os');
 class Contenedor {
     constructor(archivo){
         this.archivo = archivo;
+        this.id = 0;
     }
-    save(producto){
-        this.producto = producto;
-        fs.appendFileSync(`${this.archivo}` , `${JSON.stringify(this.producto)}`)        
-        return this.producto.id;        
+    async save(producto){        
+        try {            
+            let id = this.id++;
+            arrayProductos.push({...producto, id});
+            let data = JSON.stringify(arrayProductos);
+            fs.writeFileSync(this.archivo , data)
+            console.log(id)                    
+        }catch(error){
+            console.log(error);
+        }
     }
     getById(id){
-        this.id = id;
-        this.archivo = archivo;
-        let archivoObj = JSON.parse(archivo) 
-
-        // return fs.readFileSync(`${this.archivo}` , 'utf-8')
-        fs.readFileSync(`${this.archivo}`, `utf-8`)
+        try{
+            this.id = id;            
+            let showProducts = JSON.parse(fs.readFileSync(this.archivo, `utf-8`))
+            let getByIdProducts = showProducts.filter(x => x.id == id)            
+            return getByIdProducts
+        }catch(error){
+            console.log(error);
+        }
     }
     getAll(){
-        let productos = [];
-        let productosObj = JSON.parse(this.archivo)
-        productos.push(productosObj)
-        return productos;
-
+        try{            
+            let getAllProducts = JSON.parse(fs.readFileSync(this.archivo, `utf-8`));            
+            return getAllProducts;
+        }catch(error){
+            console.log(error)
+        }
     }
-    // deleteById(Number){
+    deleteById(id){
+        try{
+            this.id = id;            
+            let showProducts = JSON.parse(fs.readFileSync(this.archivo, `utf-8`))
+            let deleteByIdProducts = showProducts.filter(x => x.id != id)       
+            fs.writeFileSync(this.archivo, deleteByIdProducts )     
+            return deleteByIdProducts
+        }catch(error){
 
-    // }
-    // deleteAll(){
-
-    // }
+        }
+    }
+    deleteAll(){
+    }
 }
-let producto1 = {
-    id: 1599,
-    item: "Puma Runner"};
-
-let producto2 = {
-    id: 2122,
-    item: "Nike Gazer"
+let producto1 = {    
+    item: "Puma Runner"
 };
+let producto2 = {    
+    item: "Nike Gazer"
+};    
+let producto3 = {    
+    item: "Reebok Hey"
+};  
+let producto4 = {    
+    item: "Adidas Maze"
+};  
 
-
-    
+let arrayProductos = [];
 const Container = new Contenedor('./Desafio2.txt')
 
-// console.log(Container.save(producto1))
-// console.log(Container.getById(1599))
-console.log(Container.getAll())
+
+console.log(Container.save(producto3))
+// console.log(Container.save(producto2))
+// console.log(Container.getById(2))
+// console.log(Container.getAll())
+
 // save(Object): Number - Recibe un objeto, lo guarda en el archivo, devuelve el id asignado.
 // getById(Number): Object - Recibe un id y devuelve el objeto con ese id, o null si no está.
 // getAll(): Object[] - Devuelve un array con los objetos presentes en el archivo.
