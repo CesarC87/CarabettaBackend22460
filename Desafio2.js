@@ -40,15 +40,23 @@ class Contenedor {
     deleteById(id){
         try{
             this.id = id;            
-            let showProducts = JSON.parse(fs.readFileSync(this.archivo, `utf-8`))
-            let deleteByIdProducts = showProducts.filter(x => x.id != id)       
-            fs.writeFileSync(this.archivo, deleteByIdProducts )     
+            let showProducts2 = JSON.parse(fs.readFileSync(this.archivo, `utf-8`))
+            let deleteByIdProducts = showProducts2.filter(x => x.id != id)
+            deleteByIdProducts = JSON.stringify(deleteByIdProducts)     
+            fs.writeFileSync(this.archivo, deleteByIdProducts)           
             return deleteByIdProducts
         }catch(error){
 
         }
     }
     deleteAll(){
+        try{
+            let arrayProductos = [];
+            fs.writeFileSync(this.archivo, JSON.stringify(arrayProductos))
+            return fs.readFileSync(this.archivo, `utf-8`)
+        }catch(error){
+            console.log(error)
+        }
     }
 }
 let producto1 = {    
@@ -65,13 +73,17 @@ let producto4 = {
 };  
 
 let arrayProductos = [];
-const Container = new Contenedor('./Desafio2.txt')
+const container = new Contenedor('./Desafio2.txt')
 
 
-console.log(Container.save(producto3))
-// console.log(Container.save(producto2))
-// console.log(Container.getById(2))
-// console.log(Container.getAll())
+console.log(container.save(producto3))
+console.log(container.save(producto2))
+console.log(container.save(producto1))
+console.log(container.save(producto4))
+console.log(container.getById(2))
+console.log(container.getAll())
+console.log(container.deleteById(1))
+console.log(container.deleteAll())
 
 // save(Object): Number - Recibe un objeto, lo guarda en el archivo, devuelve el id asignado.
 // getById(Number): Object - Recibe un id y devuelve el objeto con ese id, o null si no está.
