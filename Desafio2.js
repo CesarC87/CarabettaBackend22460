@@ -23,7 +23,7 @@ class Contenedor {
         try{
             this.id = id;            
             let showProducts = JSON.parse(fs.readFileSync(this.archivo, `utf-8`))
-            let getByIdProducts = showProducts.filter(x => x.id == id)            
+            let getByIdProducts = showProducts.filter(x => x.id == id)                         
             return getByIdProducts
         }catch(error){
             console.log(error);
@@ -46,7 +46,7 @@ class Contenedor {
             fs.writeFileSync(this.archivo, deleteByIdProducts)           
             return deleteByIdProducts
         }catch(error){
-
+            console.log(error)
         }
     }
     deleteAll(){
@@ -86,3 +86,13 @@ console.log(container.deleteById(1))
 console.log(container.deleteAll())
 
 module.exports = Contenedor
+// getRandom(){
+//     try{
+//         let showProducts = JSON.parse(fs.readFileSync(this.archivo, `utf-8`))
+//         let id = Math.ceil(Math.random() * showProducts.length);            
+//         let getRandomProducts = showProducts.filter(x => x.id == id)            
+//         return getRandomProducts
+//     }catch(error){
+//         console.log(error)
+//     }
+// }
