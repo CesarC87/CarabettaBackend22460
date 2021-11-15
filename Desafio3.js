@@ -1,8 +1,3 @@
-const { error } = require('console');
-const fs = require('fs');
-const { arch } = require('os');
-
-
 class Contenedor {
     constructor(archivo){
         this.archivo = archivo;
@@ -37,6 +32,16 @@ class Contenedor {
             console.log(error)
         }
     }
+    getRandom(){
+        try{
+            let showProducts = JSON.parse(fs.readFileSync(this.archivo, `utf-8`))
+            let id = Math.ceil(Math.random() * showProducts.length);            
+            let getRandomProducts = showProducts.filter(x => x.id == id)            
+            return getRandomProducts
+        }catch(error){
+            console.log(error)
+        }
+    }
     deleteById(id){
         try{
             this.id = id;            
@@ -46,7 +51,7 @@ class Contenedor {
             fs.writeFileSync(this.archivo, deleteByIdProducts)           
             return deleteByIdProducts
         }catch(error){
-
+            console.log(error)
         }
     }
     deleteAll(){
@@ -59,30 +64,30 @@ class Contenedor {
         }
     }
 }
-let producto1 = {    
-    item: "Puma Runner"
-};
-let producto2 = {    
-    item: "Nike Gazer"
-};    
-let producto3 = {    
-    item: "Reebok Hey"
-};  
-let producto4 = {    
-    item: "Adidas Maze"
-};  
 
-let arrayProductos = [];
-const container = new Contenedor('./Desafio2.txt')
+let container2 = new Contenedor("./Desafio3.txt");
 
 
-console.log(container.save(producto3))
-console.log(container.save(producto2))
-console.log(container.save(producto1))
-console.log(container.save(producto4))
-console.log(container.getById(2))
-console.log(container.getAll())
-console.log(container.deleteById(1))
-console.log(container.deleteAll())
+const express = require('express')
+const fs = require('fs')
+const app = express()
 
-module.exports = Contenedor
+const PORT = 8080
+
+const server = app.listen(PORT, () => {
+    console.log(`Servidor http escuchando en el puerto ${PORT}`)
+ })
+ server.on("error", error => console.log(`Error en servidor ${error}`))
+
+app.get('/', (req, res) => {
+    res.send({ mensaje: 'hola mundo' })
+ })
+app.get('/productos', (req, res) => {
+    res.send( console.log(container2.getAll()) )
+ })
+app.get('/productoRandom', (req, res) => {
+    res.send( console.log(container2.getRandom()) )
+ })
+
+
+ 
