@@ -82,8 +82,6 @@ let storage = multer.diskStorage({
   });
   let uploadMiddleware = multer({ storage });
   
-
-
 app.listen(PORT, () => {
   console.log(`Escuchando en puerto: ${PORT}`);
 });
