@@ -116,7 +116,7 @@ router.put("/api/productos/:id", (req, res, next) => {
   res.send(Prod.getAll());
 });
 
-app.use("/casa", router);
+//app.use("/casa", router);
 
 
 
