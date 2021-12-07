@@ -19,7 +19,7 @@ app.listen(PORT, () => {
 //   })
 
  //-------- Usando EJS -----------
-  app.set('views' , './views');
+  app.set('views' ,__dirname + '/views');
   app.set('view engine', 'ejs');
 
   app.get("/", (req,res) => {
@@ -41,3 +41,5 @@ app.listen(PORT, () => {
         productos: productos
     })
   })
+
+  

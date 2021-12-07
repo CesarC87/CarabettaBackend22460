@@ -1,10 +1,10 @@
 let express = require("express");
+let multer = require('multer')
+let path = require("path");
 let app = express();
 let { Router } = express;
 let router = new Router();
 const PORT = 3000;
-let path = require("path");
-let multer = require('multer')
 
 class Productos {
   constructor(archivo) {
@@ -69,8 +69,8 @@ const Prod = new Productos();
 //middlewares
 app.use("/static", express.static(path.join(__dirname, "public", "uploads")));
 app.use("files", express.static("files"));
-app.use(express.urlencoded({extended: true}))
-app.use(express.json)
+// app.use(express.urlencoded({extended: true}))
+// app.use(express.json)
 
 let storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -80,7 +80,7 @@ let storage = multer.diskStorage({
         cb(null, `-${file.originalname}`)
     }
   });
-  let uploadMiddleware = multer({ storage });
+let uploadMiddleware = multer({ storage });
   
 app.listen(PORT, () => {
   console.log(`Escuchando en puerto: ${PORT}`);
@@ -103,7 +103,7 @@ app.post(
     const file = req.file;
     console.log("Dentro del post", file)
     if (!file) {
-      const error = new Error("Por favor, agregue un producto");
+      new Error("Por favor, agregue un producto");
       error.httpStatusCode = 400;
       return next(error);
     }
@@ -116,7 +116,7 @@ router.put("/api/productos/:id", (req, res, next) => {
   res.send(Prod.getAll());
 });
 
-//app.use("/casa", router);
+app.use("/casa", router);
 
 
 
