@@ -1,4 +1,5 @@
 const express = require("express");
+const app = express();
 const router = express.Router();
 let multer = require('multer')
 let storage = multer.diskStorage({
@@ -10,11 +11,12 @@ let storage = multer.diskStorage({
     }
   });
 let uploadMiddleware = multer({ storage });
+app.use(express.urlencoded({extended: true}))
 
 class Productos {
   constructor(archivo) {
     this.archivo = archivo;
-    this.id = 0;
+    this.id = 3;
     this.productosBase = [
       {
         title: "Ferrari 488",
@@ -60,13 +62,29 @@ class Productos {
       console.log("Nada por aqui");
     }
   }
-  addProduct(inputValue) {
+  addProduct(a,b,c) {
     try {
-      this.inputValue = inputValue;
+      let id = this.id++
+      this.a = a;
+      this.b = b;
+      this.c = c;
+      this.productosBase.push({title: a,
+                               price: b,
+                              thumbnail: c,
+                              id: id})
     } catch {
       console.log(error);
     }
   }
+  deleteById(id){
+    try{
+        this.id = id;        
+        let deleteByIdProducts = this.productosBase.filter(x => x.id != id)                 
+        return deleteByIdProducts
+    }catch(error){
+        console.log(error)
+    }
+}
 }
 
 const Prod = new Productos();
@@ -81,24 +99,41 @@ router.get("/productos/:id", (req, res, next) => {
   let id = req.params.id;
   res.send(Prod.getById(id));
 });
-router.post(
-  "/productos",
-  uploadMiddleware.single("subirProducto"),
-  (req, res, next) => {
-    const file = req.file;
-    console.log("Dentro del post", file);
-    if (!file) {
-      new Error("Por favor, agregue un producto");
-      error.httpStatusCode = 400;
-      return next(error);
-    }
-    res.send(file);
-    let inputValue = document.querySelector("#agregarProducto").value;
-    res.send(Prod.addProduct(inputValue));
-  }
-);
+
+router.post("/productos", (req,res,next) => {
+  console.log(req.body.title)
+  res.send(req.body.title)
+  Prod.addProduct(req.body.title, req.body.price, req.body.thumbnail)
+})
 router.put("/productos/:id", (req, res, next) => {
-  res.send(Prod.getAll());
+  let id = req.params.id;
+  let body = req.body;
+  let specificProduct = Prod.getById(id);  
+  specificProduct[0] = {id:id, ...body}
+  res.send(specificProduct[0])  
+});
+
+router.delete("/productos/:id", (req, res, next) => {
+  let id = req.params.id;  
+  let deleteSpecificProduct = Prod.deleteById(id);    
+  res.send(deleteSpecificProduct)  
 });
 
 module.exports = router
+
+// router.post(
+//   "/productos",
+//   uploadMiddleware.single("subirProducto"),
+//   (req, res, next) => {
+//     const file = req.file;
+//     console.log("Dentro del post", file);
+//     if (!file) {
+//       new Error("Por favor, agregue un producto");
+//       error.httpStatusCode = 400;
+//       return next(error);
+//     }
+//     res.send(file);
+//     let inputValue = document.querySelector("#agregarProducto").value;
+//     res.send(Prod.addProduct(inputValue));
+//   }
+// );

@@ -14,9 +14,13 @@
     <div class="container">
         <div>
             <div>                
-                <form action="/productos" id="prods" method="POST">
-                    <label for="agregarProducto"></label>
-                    <input type="text" id="agregarProducto" name="subirProducto">
+                <form action="/api/productos" id="prods" method="POST">
+                    <label for="title">Nombre del producto</label>
+                    <input type="text" id="title" name="title">
+                    <label for="price">Precio</label>
+                    <input type="text" id="price" name="price">
+                    <label for="thumbnail">Foto</label>
+                    <input type="text" id="thumbnail" name="thumbnail">
                     <button type="submit">Agregar Producto</button>
                 </form>
             </div>            
