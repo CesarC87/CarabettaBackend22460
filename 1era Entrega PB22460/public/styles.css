@@ -1,0 +1,16 @@
+.productos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 10% 0 0 0;
+}
+.productos > div {
+    height: 200px;
+    width: 15%;
+    background-color: #d6e1e1;
+    border-radius: 20px;
+    box-shadow: cornsilk;
+}
+h4 {
+    text-align: center
+}
