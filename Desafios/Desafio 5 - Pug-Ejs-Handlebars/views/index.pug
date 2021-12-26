@@ -1,0 +1,13 @@
+html 
+    head 
+    body 
+        h1="Productos"
+        ul 
+            - let prods = productos
+            each x in prods
+                li=x.title
+                li=x.price
+                li=x.thumbnail
+
+        form(action='/api', method='GET')
+            button(type='submit') Volver

@@ -1,0 +1,11 @@
+<ul>
+  {{#each productos}}
+    <li>{{this.title}}</li>
+    <li>{{this.price}}</li>
+    <li>{{this.thumbnail}}</li>
+  {{/each}}
+</ul>
+
+<form action="/api" method="GET">
+  <button type="submit">Volver</button>
+</form>
