@@ -1,0 +1,23 @@
+[
+    {
+      "title": "Ferrari 488",
+      "price": 300000,
+      "thumbnail":
+        "https://www.diariomotor.com/imagenes/picscache/1440x655c/Ferrari_488_GTB_2015_DM_2_ok_1440x655c.jpg",
+      "id": 1
+    },
+    {
+      "title": "Lamborghini Asterion",
+      "price": 279000,
+      "thumbnail":
+        "https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/model_detail/concept/asterion/gallery/Lamborghini-Asterion-03.jpg",
+      "id": 2
+    },
+    {
+      "title": "Mclaren",
+      "price": 3490000,
+      "thumbnail":
+        "https://www.actualidadmotor.com/wp-content/uploads/2018/01/mclaren-mso-x-frontal-3-4.jpg",
+      "id": 3
+    }
+  ]

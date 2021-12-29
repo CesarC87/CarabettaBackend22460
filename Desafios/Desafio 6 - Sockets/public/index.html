@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desafio 6</title>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/scripts.js"></script>
+  </head>
+  <body>
+    <h1>Productos</h1>
+    <div class="forms">
+        <form class="form_izq" action="/api/productos" id="prods" method="POST" onsubmit="return addProduct(this)">
+        <h3>Ingrese los productos</h3>
+        <label for="title">Nombre del producto</label>
+        <input type="text" id="title" name="title" />
+        <label for="price">Precio</label>
+        <input type="text" id="price" name="price" />
+        <label for="thumbnail">Foto</label>
+        <input type="text" id="thumbnail" name="thumbnail" />
+        <input type="submit" value="Agregar Producto" />
+      </form>
+      <div id="productos">
+        Aca van los prductos
+      </div>
+    </div>
+    <h1>Chat App</h1>
+    <div class="chat">
+        <form onsubmit="return addMessage(this)">
+        <label for="username">Email</label>
+        <input type="email" id="username" placeholder="pepe@argento.com" required />
+        <label for="texto">Mensaje</label>
+        <input type="text" id="texto" placeholder="Mensajes aquí" />
+        <input type="submit" value="Enviar" />
+        </form>
+        <div id="mensajes">
+
+        </div>
+    </div>
+  </body>
+</html>

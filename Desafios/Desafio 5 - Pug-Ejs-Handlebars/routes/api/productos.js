@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const router = express.Router();
+app.use(express.urlencoded({ extended: true }));
 // let multer = require('multer')
 // let storage = multer.diskStorage({
 //     destination: (req, file, cb) => {
@@ -11,7 +12,6 @@ const router = express.Router();
 //     }
 //   });
 // let uploadMiddleware = multer({ storage });
-app.use(express.urlencoded({ extended: true }));
 
 class Productos {
   constructor(archivo) {
