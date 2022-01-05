@@ -1,0 +1,96 @@
+Comandos:
+
+Use ecommerce 
+
+# db.mensajes.insert([
+{
+        "author": "Pepe",
+        "mensaje": "Hola pibesssss"
+    },
+    {
+        "author": "Mariela",
+        "mensaje": "Que ondaaa"
+    },
+    {
+        "author": "Eustaquio",
+        "mensaje": "Todo tranqui"
+    },
+    {
+        "author": "Mirtha Legrand",
+        "mensaje": "Buens Buenas"
+    },
+    {
+        "author": "Vegeta",
+        "mensaje": "Alooo"
+    },
+    {
+        "author": "Mike Tyson",
+        "mensaje": "jejejeje"
+    }
+])
+
+
+# db.productos.insert([
+{
+      "title": "Ferrari 488",
+      "price": 300000,
+      "thumbnail":        "https://www.diariomotor.com/imagenes/picscache/1440x655c/Ferrari_488_GTB_2015_DM_2_ok_1440x655c.jpg",
+      "id": 1
+    },
+    {
+      "title": "Lamborghini Asterion",
+      "price": 279000,
+      "thumbnail":        "https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/model_detail/concept/asterion/gallery/Lamborghini-Asterion-03.jpg",
+      "id": 2
+    },
+    {
+      "title": "Aston Martin",
+      "price": 4570000,
+      "thumbnail":        "https://amsc-prod-cd.azureedge.net/-/media/aston-martin/images/homepage/db11-in-arden-green/homepage-preowned/homepage-preowned-db11.jpg?mw=1920&rev=73a01005b4324c2bbcc372c4bee780bd&hash=30318BF9524BC29633FB3BE45E43B4B9",
+      "id": 3
+    },
+    {
+      "title": "Porsche",
+      "price": 529000,
+      "thumbnail":     "https://newsroom.porsche.com/.imaging/mte/porsche-templating-theme/image_1290x726/dam/pnr/2021/Innovation/Porsche-Engeneering-1-2021/Game-Engines/PEM_Carrera4S.jpeg/jcr:content/PEM_Carrera4S.jpeg",
+      "id": 4
+    },
+    {
+      "title": "Mclaren",
+      "price": 3490000,
+      "thumbnail":       "https://www.actualidadmotor.com/wp-content/uploads/2018/01/mclaren-mso-x-frontal-3-4.jpg",
+      "id": 5
+    }
+])
+
+
+Ya realizado
+
+# db.mensajes.find({}).pretty()
+# db.productos.find({}).pretty()
+
+db.mensajes.estimatedDocumentCount()
+db.productos.estimatedDocumentCount()
+
+a)  # db.productos.insert(
+{
+      "title": "Force India",
+      "price": 1500000,
+      "thumbnail":        "https://as01.epimg.net/motor/imagenes/2017/03/14/formula_1/1489502324_132622_1489502405_noticia_normal.jpg",
+      "id": 1
+    }
+)
+
+
+b) I) # db.productos.find({price: {$lt :300000}})
+    II) # db.productos.find({$and: [{price: {$gt :300000}, price: {$lt: 500000}}]})
+    III) # db.productos.find({price: {$gt :400000}})
+    IV) # db.productos.find({}, {"title": 1, "_id": 0}).sort({"price": 1}).skip(2).limit(1)
+
+c) # db.productos.update({}, {$set: {"stock": 100}}, {"multi":true})
+
+d) # db.productos.update({"price": {$gt: 400000}}, {$set: {"stock": 0}}, {"multi":true})
+
+e) db.productos.remove({price: {$lt: 300000}})
+
+# db.createUser({user: “Pepe”, pwd: “asd456”, roles: [{role: “read”, db: “productos”}]})

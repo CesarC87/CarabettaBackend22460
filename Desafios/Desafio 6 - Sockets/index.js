@@ -34,7 +34,7 @@ io.on("connection", (socket) => {
     productos.push(data);
     io.sockets.emit("prod-base", productos);
   });
-});
+}); 
 
 // Router
 const apiRouter = require("./routes/api/chat");
