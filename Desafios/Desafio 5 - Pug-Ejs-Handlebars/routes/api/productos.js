@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const router = express.Router();
+import fetch from 'node-fetch';
 app.use(express.urlencoded({ extended: true }));
 // let multer = require('multer')
 // let storage = multer.diskStorage({
@@ -86,12 +87,29 @@ class Productos {
 
 const Prod = new Productos();
 
-router.get("/", (req, res, next) => {
-  res.sendFile(
-    "C:/Users/carab/Desktop/Stuff/CoderHouse - BackEnd 22460/carabetta-backend22460/Desafios/Desafio 5 - Pug-Ejs-Handlebars/public/index.html"
-  );
+// router.get("/", (req, res, next) => {
+//   res.sendFile(
+//     "C:/Users/carab/Desktop/Stuff/CoderHouse - BackEnd 22460/carabetta-backend22460/Desafios/Desafio 5 - Pug-Ejs-Handlebars/public/index.html"
+//   );
   
-});
+// });
+
+router.get("/", async (req, res) => {
+    const url = "https://superheroapi.com/api/10225901370899333/search/batman";
+    const options = {
+        "method": "GET"
+    }
+    const fetch_response = await fetch(url,options)
+    .then(res => res.json())
+    .catch(e => {
+        console.error({
+            "message": "Ocurrio un error",
+            error: e
+        });
+    });
+    console.log(fetch_response)
+    res.json(fetch_response)
+})
 
 // Get para Handlebar
 
