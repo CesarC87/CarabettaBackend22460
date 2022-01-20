@@ -1,20 +1,17 @@
-const Productos = require('../config/productos')
+const Mensajes = require('../config/mensajes')
 let { db } = require('../config/index')
 
-const OnMariaDB = async(product) => {
-    let mysql = require('knex')({
-      client: 'mysql',
-      connection: {                   
-        host: db.dbHost,
-        user: db.dbUser,
-        password: db.dbPass,
-        database: db.dbName
-      },
-      pool: { min: 0, max: 7 } // Limita el nro de conexiones
+const SqLite3 = async(message) => {
+    let sqlite = require('knex')({
+      client: 'sqlite3',
+      connection: {
+          filename:'./DB/ecomerce.sqlite'
+        },      
+      useNullAsDefault: true        
     })
-    const prods = new Productos(mysql, 'productos');
-    await prods.tableExists();
-    await prods.addProduct(product)
+    const sms = new Mensajes(sqlite, 'mensajes');
+    await sms.tableExists();
+    await sms.addMensaje(message) 
     class Database { // Es un singleton, se instancia solo 1 vez
         static client;
         constructor(){
@@ -28,4 +25,4 @@ const OnMariaDB = async(product) => {
       }
   };
   
-  module.exports = { OnMariaDB };
+  module.exports = { SqLite3 };

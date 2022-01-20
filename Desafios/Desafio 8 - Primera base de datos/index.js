@@ -12,7 +12,7 @@ const { Server: SocketIO } = require("socket.io");
 const app = express();
 const httpServer = new HttpServer(app);
 const io = new SocketIO(httpServer);
-
+const bodyparser = require('body-parser')
  
 // Middlewares
 app.use(cors(config.cors))
@@ -21,9 +21,11 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/style", express.static(__dirname + "public/style"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(bodyparser.json())
 
 httpServer.listen(PORT, () => console.log(`SERVER ON ${PORT}`));
 
+// prods.crearTabla();
 
 // (async() => {
 //     try {
@@ -57,8 +59,6 @@ httpServer.listen(PORT, () => console.log(`SERVER ON ${PORT}`));
 //     }
 // });
 
-
-
 const messages = [];
 const productos = [];
 
@@ -78,5 +78,10 @@ io.on("connection", (socket) => {
 });
 
 // Router
-const apiRouter = require("./routes/api/chat");
-app.use("/api/chat", apiRouter);
+const chatRouter = require("./routes/api/chat");
+app.use("/api/chat", chatRouter);
+const prodsRouter = require("./routes/api/prods");
+app.use("/api/prods", prodsRouter);
+const mensajesRouter = require("./routes/api/mensajes");
+app.use("/api/mensajes", mensajesRouter);
+

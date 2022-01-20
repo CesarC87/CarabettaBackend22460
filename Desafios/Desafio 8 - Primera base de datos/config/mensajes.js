@@ -1,30 +1,39 @@
-
-class Productos {
-    constructor(conexion, tabla){
-        this.conexion = conexion;
-        this.tabla = tabla;
+class Mensajes {
+    constructor(conexion, tabla) {
+      this.conexion = conexion;
+      this.tabla = tabla;
     }
-    async crearTabla() {
+    async tableExists(){
+        try{
+          await this.conexion.schema.hasTable(this.tabla)
+          .then(data => {
+            !data && this.crearTabla();
+          })
+        } catch (error){
+          console.log(error);
+        }   
+      }
+    async crearTabla() {      
         try {
-            // Crear database
-            await this.conexion.schema.createTable(this.tabla , (table) => {
-                table.increments('id').primary(),
-                table.string('title'),            
-                table.float('price'),
-                table.string('thumbnail')
-            })
+          // Crear database
+          await this.conexion.schema.createTable(this.tabla, (table) => {
+            table.increments("id").primary(),
+              table.string("email"),
+              table.string("mensaje")
+              ;
+          });
         } catch (error) {
-            console.log(error)
+          console.log(error);
         }
-    };
-    async addProduct(product) {
+      
+    }
+    async addMensaje(message) {
       try {
         await this.conexion.from(this.tabla).insert({
-            title:product.title,
-            price:product.price,
-            thumbnail:product.thumbnail
+          email: message.email,
+          mensaje: message.mensaje        
         });
-      } catch {
+      } catch (error){
         console.log(error);
       }
     }
@@ -59,5 +68,4 @@ class Productos {
       }
     }
   }
-  module.exports = Productos
-//   const Prod = new Productos();
+  module.exports = Mensajes;
