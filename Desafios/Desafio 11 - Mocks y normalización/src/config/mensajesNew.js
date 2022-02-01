@@ -15,29 +15,20 @@ class MensajesNew {
         }catch(err){
             console.log(err);
         }
-    }
-    async tableExists(){
-        try{
-          await this.conexion.schema.hasTable(this.tabla)
-          .then(data => {
-            !data && this.crearTabla();
-          })
-        } catch (error){
-          console.log(error);
-        }   
-      }
+    }    
     async crearTabla() {      
         try {
           // Crear database
-          this.schema
+          if(!this.schema){
+              this.schema
+          }
         } catch (error) {
           console.log(error);
-        }
-      
+        }      
     }
     async addMensaje(message) {
       try {
-        const mensajeSaveModel = new model.this.schema(message)
+        const mensajeSaveModel = new this.schema(message)
         mensajeSaveModel.save()
       } catch (error){
         console.log(error);

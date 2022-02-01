@@ -40,9 +40,11 @@ const levantarMensajes = () => {
     fetch('http://localhost:3007/api/productosTest')
       .then(res => {
         if(res.ok){          
-          res.json()}
+          res.json()
+          console.log(userData)
+        }
           else{
-          console.log('Todo bien')
+          console.log('Todo mal')
           }
         })
       .then(data => console.log(data))

@@ -1,9 +1,10 @@
 const MensajesNew = require('../config/mensajesNew')
-const URL = process.env.URL
+let { mongoURL } = require('../config/index')
 
 const MongoDB = async (message) =>{
     const mongoose = require('mongoose')
-    const mensajeSchema = new mongoose.Schema({
+    const Schema = mongoose.Schema;
+    const mensajeSchema = new Schema({
         author: {
             id: {type:String, require:true, max:50},
             nombre: {type:String, require:true, max:50},
@@ -14,9 +15,8 @@ const MongoDB = async (message) =>{
         },
         text: {type:String, require:true, max: 500}
     })    
-    const mensajesNewModel = mongoose.model('mensajesNew', mensajeSchema)
-    const smsNew = new MensajesNew(mongoose,'mensajesNew', URL, mensajesNewModel);
-    // await smsNew.tableExists();
+    const mensajes = mongoose.model('mensajesNew', mensajeSchema)    
+    const smsNew = new MensajesNew(mongoose,'mensajesNew', 'mongodb://localhost:27017/ecommerce' , mensajes);    
     await smsNew.crearTabla()
     await smsNew.addMensaje(message) 
 }
