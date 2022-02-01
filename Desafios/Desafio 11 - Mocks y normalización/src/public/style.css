@@ -1,0 +1,69 @@
+#mensajes {
+    background-color: #4db0b585;
+    height: 150px;
+    border-radius: 10px;
+    padding: 2%;
+  }
+  #productos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 15%;
+  }
+  #productos div {
+    background-color: #dfdfdb;
+    padding: 5%;
+    border-radius: 20px;
+  }
+  #productos img {
+    max-width: 99%;
+  }
+  #prods :last-child {
+    margin: 10%;
+    border-style: none;
+    border-radius: 5px;
+    padding: 3%;
+    background-color: #28bdae;
+    color: white;
+  }
+  .forms form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    background-color: #dfdfdb;
+    padding: 5%;
+    border-radius: 10px;
+  }
+  .forms {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 5% 0 0 0;
+  }
+  .form_der {
+    display: flex;
+    justify-content: center;
+  }
+  .form_izq button {
+    margin: 10% 0 0 0;
+  }
+  .chat {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .chat form {
+    display: flex;
+    flex-direction: column;
+  }
+  .chat form input {
+    margin: 2% auto 10%;
+  }
+  .chat form :last-child {
+    margin: 10%;
+    border-style: none;
+    border-radius: 5px;
+    padding: 3%;
+    background-color: #28bdae;
+    color: white;
+  }
