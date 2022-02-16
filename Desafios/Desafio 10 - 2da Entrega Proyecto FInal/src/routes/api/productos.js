@@ -1,7 +1,7 @@
-const express = require("express");
-const app = express();
-const router = express.Router();
-const { v4: uuidv4 } = require('uuid');
-app.use(express.urlencoded({extended: true}))
+const { Router } = require("express");
+const router = Router();
+const { saveProducts } = require("../../controllers/productos");
 
-module.exports = router
+router.post("/", saveProducts);
+
+module.exports = router;

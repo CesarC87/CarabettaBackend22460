@@ -11,5 +11,8 @@ const db = {
     dbPass: process.env.DB_PASSWORD,
     dbName: process.env.DB_NAME
 }
+const mongoURL = {
+    mongoUrl: process.env.MONGO_URL
+}
 
-module.exports = { config , db }
+module.exports = { config , db , mongoURL}
