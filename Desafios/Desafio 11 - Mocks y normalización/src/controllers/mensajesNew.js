@@ -1,10 +1,21 @@
 const { MongoDB } = require('../models/mongoDB');
 
 const saveMessagesNew = (req, res, next) => {
-    let message = req.body;
-    MongoDB(message)
-    res.json(req.body)
-    console.log(req.body);
+  try {
+      let message = req.body;
+      MongoDB(message)
+      res.json({
+        'status' : 200,
+        'message' : 'Exito total',
+        'object' : message
+      })      
+    } catch (error) {
+      res.json({
+        'status' : 400,
+        'message' : 'Fracaso total'        
+      })            
+    }
+    // console.log(message);
   }
 
   module.exports = { saveMessagesNew }

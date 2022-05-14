@@ -21,18 +21,20 @@ class MensajesNew {
           // Crear database
           if(!this.schema){
               this.schema
+          }else{
+            console.log('Schema ya creado')
           }
         } catch (error) {
           console.log(error);
         }      
     }
-    async addMensaje(message) {
+    async addMensaje(message) {        
       try {
         const mensajeSaveModel = new this.schema(message)
         mensajeSaveModel.save()
       } catch (error){
         console.log(error);
-      }
+      }      
     }
     getAll() {
       try {

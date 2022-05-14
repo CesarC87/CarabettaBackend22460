@@ -1,52 +1,60 @@
 const levantarProductos = () => {
-    let title = document.querySelector('#title');
-    let price = document.querySelector('#price');
-    let thumbnail = document.querySelector('#thumbnail');
-  
-    fetch('http://localhost:3007/api/prods')
-      .then(res => {
-        if(res.ok){          
-          res.json()}
-          else{
-          console.log('Todo bien')
-          }
-        })
-      .then(data => console.log(data))
-      .catch(error => console.log('Error'))
-  }
+  let title = document.querySelector("#title");
+  let price = document.querySelector("#price");
+  let thumbnail = document.querySelector("#thumbnail");
 
-const levantarMensajes = () => {
+  fetch("http://localhost:3007/api/prods")
+    .then((res) => {
+      if (res.ok) {
+        res.json();
+      } else {
+        console.log("Todo bien");
+      }
+    })
+    .then((data) => console.log(data))
+    .catch((error) => console.log("Error"));
+};
 
-  let email = document.querySelector('#email');
-  let nombre = document.querySelector('#nombre');
-  let apellido = document.querySelector('#apellido');
-  let edad = document.querySelector('#edad');
-  let alias = document.querySelector('#alias');
-  let avatar = document.querySelector('#avatar');
-  let mensaje = document.querySelector('#mensaje');
+const levantarMensajes = (e) => {
+  e.preventDefault();
+  let email = document.querySelector("#email").value;
+  let nombre = document.querySelector("#nombre").value;
+  let apellido = document.querySelector("#apellido").value;
+  let edad = document.querySelector("#edad").value;
+  let alias = document.querySelector("#alias").value;
+  let avatar = document.querySelector("#avatar").value;
+  let mensaje = document.querySelector("#mensaje").value;
 
-  let userData = {
+  let userInfo = {
     author: {
-      id: email,
+      email: email,
       nombre: nombre,
-      apellido: apellido ,
+      apellido: apellido,
       edad: edad,
-      alias: alias,
-      avatar: avatar
-      },
-    text: mensaje
-  }   
+      alias: alias, 
+      avatar: avatar,
+    },
+    text: mensaje,
+  };
+  let process = true
+  process = true ? console.log('Procesando...') : console.log('Listo')
+
+  document.querySelector("#mensajesView").innerHTML = `<div>
+                                                          ${userInfo.author.email} dice: ${userInfo.text}
+                                                        </div>`;
+  // console.log(userData);
+  fetch("http://localhost:3007/api/productosTest", { 
+    method: "POST",
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userInfo),
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data, 'respuesta de data'))
+    .catch((error) => console.log(error))
     
-    fetch('http://localhost:3007/api/productosTest')
-      .then(res => {
-        if(res.ok){          
-          res.json()
-          console.log(userData)
-        }
-          else{
-          console.log('Todo mal')
-          }
-        })
-      .then(data => console.log(data))
-      .catch(error => console.log('Error'))
-  }
+};

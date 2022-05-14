@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Desafio 11</title>
     <link rel="stylesheet" type="text/css" href="/style.css" />
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/scripts.js"></script>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="./scripts.js"></script>
   </head>
   <body>
     <h1>Productos</h1>
@@ -27,9 +27,8 @@
       </div>
     </div>
     <h1>Chat App</h1>
-    <div class="chat">
-        <!-- <form onsubmit="return addMessage(this)"> -->
-        <form id="mensajes" method="POST" action="/api/productosTest" onsubmit="levantarMensajes()">
+    <div class="chat">     
+        <form id="mensajes" >
           <label for="email">Email</label>
           <input type="email" id="email" name="email" placeholder="pepe@argento.com" required />
           <label for="nombre">Nombre</label>
@@ -39,16 +38,19 @@
           <label for="edad">Edad</label>
           <input type="number" id="edad" name="edad"  required />
           <label for="alias">Alias</label>
-          <input type="text" id="alias" name="alias"  required />
+          <input type="text" id="alias" name="alias"  required /> 
           <label for="avatar">Avatar</label>
           <input type="text" id="avatar" name="avatar"  required />
           <label for="texto">Mensaje</label>
           <input type="text" id="mensaje" name="mensaje" placeholder="Mensajes aquí" />
-          <input type="submit" value="Enviar" />
+          <button type="submit" onclick="levantarMensajes(event)">Enviar</button>
         </form>
-        <div id="mensajes">
+        <div id="mensajesView">
           Mensajes
         </div>
     </div>
   </body>
 </html>
+
+<!-- onsubmit="levantarMensajes(event)" -->
+<!-- method="POST" action="/api/productosTest" -->

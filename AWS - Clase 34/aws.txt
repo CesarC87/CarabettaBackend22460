@@ -1,0 +1,16 @@
+ARN arn:aws:iam::436836799512:role/aws-elasticbeanstalk-ec2-role
+
+ARN del perfil de instancias arn:aws:iam::436836799512:instance-profile/aws-elasticbeanstalk-ec2-role
+
+Nombre
+NotificacionCesar
+ARN
+arn:aws:sns:us-east-1:436836799512:NotificacionCesar
+Tipo
+Estándar
+Nombre para visualización
+-
+Propietario del tema
+436836799512
+
+Suscripción: 473d7513-8cd1-4c73-a27e-f2cbfb1ac411

@@ -1,0 +1,1 @@
+const userApi = require("../components/user/user.api");
