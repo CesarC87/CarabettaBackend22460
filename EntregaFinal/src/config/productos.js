@@ -17,7 +17,7 @@ class Productos {
         try {
           // Crear database
           await this.conexion.schema.createTable(this.tabla, (table) => {
-            table.increments("id").primary(),
+              table.increments("id").primary(),
               table.string("title"),
               table.float("price"),
               table.string("thumbnail");

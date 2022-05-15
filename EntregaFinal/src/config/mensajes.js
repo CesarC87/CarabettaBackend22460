@@ -17,7 +17,7 @@ class Mensajes {
         try {
           // Crear database
           await this.conexion.schema.createTable(this.tabla, (table) => {
-            table.increments("id").primary(),
+              table.increments("id").primary(),
               table.string("email"),
               table.string("mensaje")
               ;
