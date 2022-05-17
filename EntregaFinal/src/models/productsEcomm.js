@@ -9,4 +9,4 @@ const productsEcommSchema = new Schema({
         stock: {type:Number, require:true, max:50},   
         date: {type:Date, default:Date.now, max:50},   
 })    
-module.exports = mongoose.model('productsEcomm', productsEcommSchema);       
+exports.productsEcomm = mongoose.model('productsEcomm', productsEcommSchema);       

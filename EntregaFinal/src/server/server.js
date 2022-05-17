@@ -10,7 +10,8 @@ const MongoStore = require('connect-mongo');
 const FileStore = require('session-file-store')(session);
 const RedisStore = require('connect-redis')(session)
 const AdvancedOptions = { useNewUrlParser: true, useUnifiedTopology: true }
-const { isValidObjectId } = require('mongoose');
+// const { isValidObjectId } = require('mongoose');
+const mongoose = require('mongoose');
 
 class Server {
     constructor() {
@@ -27,10 +28,12 @@ class Server {
         this.registroRoute = '/api/registro';
         this.registroFailRoute = '/api/registroFail';
         this.loginFailRoute = '/api/loginFail';
+        this.usersRoute = '/api/users';
         this.usuarios = []
         this.middleware();
         this.routes();
         this.views();       
+        this.connection()
     }    
 
     middleware() {
@@ -104,11 +107,22 @@ class Server {
         this.app.use(this.registroRoute, require('../routes/api/registro'));
         this.app.use(this.registroFailRoute, require('../routes/api/registroFail'));
         this.app.use(this.loginFailRoute, require('../routes/api/loginFail'));
+        this.app.use(this.usersRoute, require('../routes/api/users'));
     } 
 
     views(){
         this.app.set('view engine', 'ejs')
         this.app.set('views', path.join(__dirname, '../views'))
+    }
+
+    connection(){
+        mongoose.connect(process.env.MONGO_ATLAS)
+        .then(()=>{
+            console.log('Conectados a Mongo Atlas')
+        })
+        .catch(()=>{
+            console.log('Error al conectar a Mongo Atlas')
+        })
     }
     
     listen() {
