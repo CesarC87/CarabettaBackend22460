@@ -25,6 +25,12 @@ const postUser = async (req, res, next) => {
   !newUser ? res.status(404).json({ message: "No se pudo crear el usuario" }) : res.status(200).json(newUser);
 }
 
+const deleteUser = async (req, res, next) => {
+  const { id } = req.params;
+  const user = await User.findByIdAndDelete(id);
+  !user ? res.status(404).json({ message: "No se encontró el usuario" }) : res.status(200).send("Usuario eliminado");
+}
+
 const isNotAuth = (req, res, next) => {
   !req.isAuthenticated() ? next() : res.redirect('/api/registroFail')
 };
@@ -32,4 +38,4 @@ const isAuth = (req, res, next) => {
   req.isAuthenticated() ? next() : res.redirect('/api/registro')
 };
 
-module.exports = { isAuth, isNotAuth, getUser, postUser };
+module.exports = { isAuth, isNotAuth, getUser, postUser , deleteUser};

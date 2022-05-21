@@ -24,6 +24,7 @@ class Server {
         this.mensajesRoute = '/api/mensajes';
         this.productosRoute = '/api/productos';
         this.productosTestRoute = '/api/productosTest';
+        this.productsRoute = '/api/productsEcommerce';
         this.loginRoute = '/api/login';
         this.registroRoute = '/api/registro';
         this.registroFailRoute = '/api/registroFail';
@@ -108,6 +109,7 @@ class Server {
         this.app.use(this.registroFailRoute, require('../routes/api/registroFail'));
         this.app.use(this.loginFailRoute, require('../routes/api/loginFail'));
         this.app.use(this.usersRoute, require('../routes/api/users'));
+        this.app.use(this.productsRoute, require('../routes/api/productsEcommerce'));
     } 
 
     views(){
