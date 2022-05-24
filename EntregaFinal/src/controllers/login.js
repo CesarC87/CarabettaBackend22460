@@ -10,6 +10,8 @@ const JWTlogin = async (req, res, next) => {
     const user = await User.findOne({email: email});
 
     if(!user) {
+        res.clearCookie('token')
+        console.log('No esta ese usuario')
         return res.status(401).send({
             message: "No se encontró el usuario"
         })
@@ -23,8 +25,12 @@ const JWTlogin = async (req, res, next) => {
             expiresIn: "1d"
         }
         );
-        res.status(200).send({user: user.email, token})
+        res.cookie('token', token, {
+            httpOnly: true,
+        })
+        res.status(200).send({user: user.email, token})               
     } else {
+        res.clearCookie('token')
         res.status(401).send({
             message: "Auth failed"
         })

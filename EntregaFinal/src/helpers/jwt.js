@@ -14,3 +14,5 @@ const authJWT = () => {
 const isRevoked = (req, payload, done) => {
     !payload.isAdmin ? done(null, true) : done()
 }
+
+module.exports = { authJWT, isRevoked };
