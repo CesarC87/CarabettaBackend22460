@@ -28,6 +28,9 @@ const JWTlogin = async (req, res, next) => {
         res.cookie('token', token, {
             httpOnly: true,
         })
+        res.cookie('user', user.email, {
+            httpOnly: true
+        })
         res.status(200).send({user: user.email, token})               
     } else {
         res.clearCookie('token')

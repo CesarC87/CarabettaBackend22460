@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 // router.post("/", (req, res, next) => {    
 //     let nombre = req.body.username;
-//     let contraseña = req.body.password;   
+//     let contraseña = req.body.password;          <---- Esto es para session
 //     req.session.user = nombre;
 //     req.session.pass = contraseña;    
 //     return res.json({
@@ -26,21 +26,26 @@ const isAuthByJWT = (req, res, next) => {
     const token = req.cookies.token;
     const secretWord = process.env.SECRET;   
     if(token == null) {
-        res.redirect('/api/registro');    
+        res.redirect('/api/login');    
         return res.sendStatus(401);
-    }
-        
+    }        
 
     jwt.verify(token, secretWord, (err, user) => {
-        if(err) return res.sendStatus(403);
+        if(err) {
+            res.clearCookie('token')
+            res.clearCookie('user')
+            res.redirect('/api/login');  
+            return res.sendStatus(403);
+        }
         req.user = user;
         next();
     });
 }
 // isAuthByJWT,
-router.get('/', isAuthByJWT,(req, res, next) => {        
-    console.log(req.headers)
-    res.render('home', {usuario: req.body.email});
+router.get('/', isAuthByJWT,(req, res, next) => {     
+    console.log(req.user) 
+    const user = req.cookies.user
+    res.render('home', {usuario: user});
 })
 
 module.exports = router; 

@@ -27,12 +27,16 @@ let userInfo = {
       })                   
         .then((response) => response.json())
         .then((res) => {
-          if(res.status = 200){
-            console.log(res)
-            localStorage.setItem('user', res.user)
-            localStorage.setItem('token', res.token)
-            window.location.replace('/api')
+          console.log(res)
+          if(res.message){
+            res.message === "Auth failed" && (error.innerHTML = '<div class="error">Contraseña incorrecta</div>')
+            res.message === "No se encontró el usuario" && (window.location.replace('/api/registro'))
           }
+          if(res.user){
+            window.location.replace('/api')
+          }else{
+            console.log('Error al iniciar sesion')
+          }          
         })        
         .catch((error) => console.log('No llego al 200 desde loginScript', error));
     } catch (error) {
