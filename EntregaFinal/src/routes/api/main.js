@@ -35,7 +35,7 @@ const isAuthByJWT = (req, res, next) => {
             res.clearCookie('token')
             res.clearCookie('user')
             res.redirect('/api/login');  
-            return res.sendStatus(403);
+            return res.sendStatus(403); 
         }
         req.user = user;
         next();

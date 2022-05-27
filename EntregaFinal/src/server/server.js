@@ -26,6 +26,7 @@ class Server {
         this.productosTestRoute = '/api/productosTest';
         this.productsRoute = '/api/productsEcommerce';
         this.loginRoute = '/api/login';
+        this.logoutRoute = '/api/logout';
         this.registroRoute = '/api/registro';
         this.registroFailRoute = '/api/registroFail';
         this.loginFailRoute = '/api/loginFail';
@@ -105,6 +106,7 @@ class Server {
         this.app.use(this.mainRoute, require('../routes/api/main'));
         this.app.use(this.productosTestRoute, require('../routes/api/productosTest'));
         this.app.use(this.loginRoute, require('../routes/api/login'));
+        this.app.use(this.logoutRoute, require('../routes/api/logout'));
         this.app.use(this.registroRoute, require('../routes/api/registro'));
         this.app.use(this.registroFailRoute, require('../routes/api/registroFail'));
         this.app.use(this.loginFailRoute, require('../routes/api/loginFail'));

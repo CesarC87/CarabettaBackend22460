@@ -3,7 +3,7 @@ const levantarProductos = () => {
   let price = document.querySelector("#price");
   let thumbnail = document.querySelector("#thumbnail");
 
-  fetch("http://localhost:3007/api/prods")
+  fetch("http://localhost:3019/api/prods")
     .then((res) => {
       if (res.ok) {
         res.json();
@@ -40,7 +40,7 @@ const levantarMensajes = (e) => {
   document.querySelector("#mensajesView").innerHTML = `<div>
                                                           ${userInfo.author.email} dice: ${userInfo.text}
                                                         </div>`;
-  fetch("http://localhost:3008/api/productosTest", {
+  fetch("http://localhost:3019/api/productosTest", {
     method: "POST",
     mode: "cors", // no-cors, *cors, same-origin
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -54,3 +54,20 @@ const levantarMensajes = (e) => {
     .then((data) => console.log(data, "respuesta de data"))
     .catch((error) => console.log(error));
 };
+
+const logOut = () => {
+  fetch("http://localhost:3019/api/logout", {
+    method: "GET",
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json", 
+    },
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      res.message === "Logout exitoso" && (window.location.replace("/api/login"));
+    })
+    .catch((error) => console.log('Error desde Script logout',error));
+}
