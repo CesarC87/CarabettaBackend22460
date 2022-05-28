@@ -56,7 +56,7 @@ const levantarMensajes = (e) => {
 };
 
 const logOut = () => {
-  fetch("http://localhost:3019/api/logout", {
+  fetch("http://localhost:3019/api/logout", { 
     method: "GET",
     mode: "cors", // no-cors, *cors, same-origin
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -66,8 +66,11 @@ const logOut = () => {
     },
   })
     .then((res) => res.json())
-    .then((res) => {
-      res.message === "Logout exitoso" && (window.location.replace("/api/login"));
-    })
-    .catch((error) => console.log('Error desde Script logout',error));
+    .then(window.location.replace("/api/login"))
+    .catch((error) => {     
+      console.log('Error desde Script logout',error)  
+    });
 }
+
+// console.log('removiendo cookie')
+//   document.cookie = "user=; max-age=0";
