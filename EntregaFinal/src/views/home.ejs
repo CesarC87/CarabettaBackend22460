@@ -10,8 +10,10 @@
     <script src="/scripts.js"></script>
   </head>
   <body>
-    <h1>Bienvenido <%=usuario%>!</h1> 
-    <button onclick="logOut()">Log Out</button> 
+    <div class="header">
+      <h1>Bienvenido <%=usuario%>!</h1> 
+      <button onclick="logOut()">Log Out</button> 
+    </div>
     <div class="forms">
         <form class="form_izq"  id="prods" method="POST" action="/api/productos" onsubmit="levantarProductos()">
         <h3>Ingrese los productos</h3>
@@ -19,8 +21,12 @@
         <input type="text" id="title" name="title" />
         <label for="price">Precio</label>
         <input type="text" id="price" name="price" />
-        <label for="thumbnail">Foto</label>
-        <input type="text" id="thumbnail" name="thumbnail" />
+        <label for="description">Descripción</label>
+        <input type="text" id="description" name="description" />
+        <label for="image">Imágen</label>
+        <input type="text" id="image" name="image" />
+        <label for="stock">Foto</label>
+        <input type="text" id="stock" name="stock" />        
         <input type="submit" value="Agregar Producto" />
       </form>
       <div id="productos">

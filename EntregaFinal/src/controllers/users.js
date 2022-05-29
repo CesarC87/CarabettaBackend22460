@@ -14,15 +14,22 @@ const getUser = async (req, res, next) => {
   }
 };
 const postUser = async (req, res, next) => {
-  const { name, email, password, isAdmin } = req.body;
-  let newUser = new User({
-    name,
-    email,
-    password: bcrypt.hashSync(password, 10),
-    isAdmin
-  })
-  newUser = await newUser.save()
-  !newUser ? res.status(404).json({ message: "No se pudo crear el usuario" }) : res.status(200).json(newUser);
+  const { name, email, password, isAdmin } = req.body;  
+  const userExist = await User.findOne({ email });
+  if (userExist) {
+    console.log('Ya esta registrado')
+    // res.redirect('/api/registroFail');
+    return res.status(400).send({message: "Usuario registrado"})
+  }else {
+    let newUser = new User({
+      name,
+      email,
+      password: bcrypt.hashSync(password, 10),
+      isAdmin
+    })
+    newUser = await newUser.save()
+    !newUser ? res.status(404).json({ message: "No se pudo crear el usuario" }) : res.redirect('/api/login');
+  }
 }
 
 const deleteUser = async (req, res, next) => {

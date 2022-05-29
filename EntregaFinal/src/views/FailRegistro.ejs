@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error en registro</title>
+    <title>Entrega Final Carabetta-22460</title>
+    <link rel="stylesheet" type="text/css" href="/registro/registro.css" />
+    <script src="/registro/registro.js"></script>
 </head>
 <body>
-    <h1>Ya estás registrado <%=usuario%>!</h1>
-    <a href="/api">Ingresar al sitio</a>
+    <h1>Ya estás registrado! por favor, ingresá tu email y contraseña</h1>
+    <div class="login">
+        <div class="loginForm">
+            <label for="email">Ingresá tu email</label>
+            <input type="text" name="email" id="email">
+            <label for="password">Ingresá tu password</label>
+            <input type="password" name="password" id="password">
+            <button onclick="validar(event)">Ingresar</button>
+        </div>
+    </div>
+    <div id="error"></div>
 </body>
 </html>

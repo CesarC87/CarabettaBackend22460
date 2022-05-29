@@ -1,9 +1,19 @@
 const levantarProductos = () => {
   let title = document.querySelector("#title");
   let price = document.querySelector("#price");
-  let thumbnail = document.querySelector("#thumbnail");
+  let image = document.querySelector("#image");
+  let description = document.querySelector("#description");
+  let stock = document.querySelector("#stock");
 
-  fetch("http://localhost:3019/api/prods")
+  let productos = {
+    title: title.value,
+    price: price.value,
+    image: image.value,
+    description: description.value,
+    stock: stock.value,
+  };
+
+  fetch("http://localhost:3019/api/productosEcommerce", productos)
     .then((res) => {
       if (res.ok) {
         res.json();

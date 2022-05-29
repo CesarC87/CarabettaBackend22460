@@ -28,11 +28,12 @@ function validar(e) {
         })                   
         //   .then((response) => response.json())
           .then((res) => {
-            if(res.status = 200){
-              window.location.replace('/api/login')
+            if(res.status == 400){
+              window.location.replace('/api/registroFail')
             }else{
-              console.log('Error al registrarse')
+              window.location.replace('/api/login')
             }
+            console.log(res.status)
           })        
           .catch((error) => console.log(error));
       } catch (error) {
