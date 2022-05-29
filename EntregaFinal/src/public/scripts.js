@@ -13,7 +13,17 @@ const levantarProductos = () => {
     stock: stock.value,
   };
 
-  fetch("http://localhost:3019/api/productosEcommerce", productos)
+  fetch(`http://localhost:3019/api/productsEcommerce`, {
+          method: "POST",
+          redirect: 'follow',
+          mode: "cors", // no-cors, *cors, same-origin
+          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: "same-origin", // include, *same-origin, omit
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(productos),      
+        })      
     .then((res) => {
       if (res.ok) {
         res.json();
