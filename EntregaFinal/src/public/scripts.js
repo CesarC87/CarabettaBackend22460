@@ -1,3 +1,7 @@
+let socket = io();
+let date = new Date();
+
+
 const levantarProductos = () => {
   let title = document.querySelector("#title");
   let price = document.querySelector("#price");
