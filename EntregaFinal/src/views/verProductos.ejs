@@ -14,10 +14,15 @@
       <button onclick="logOut()">Log Out</button> 
     </div>
     <div class="forms">        
-      <div id="verProductos">
+      <div class="verProductos">
         <% for (let i = 0; i < productsList.length;  i++ ) { %>
-            <br/>  <%= i %> 
-            <br/>  <%= productsList[i].title %>
+            <div class="productCard">
+                <img src="<%= productsList[i].image %>" alt="<%= productsList[i].title %>" />
+                <h2><%= productsList[i].title %></h2>
+                <p><%= productsList[i].description %></p>
+                <p><%= productsList[i].price %></p>      
+                <span><%= productsList[i].stock %></span>          
+            </div>                        
             <% } %>      
       </div>
     </div>

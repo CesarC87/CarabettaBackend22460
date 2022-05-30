@@ -54,7 +54,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   margin: 5% 0 0 0;
-  font-family: 'quicksand';
+  font-family: "quicksand";
 }
 .form_der {
   display: flex;
@@ -67,7 +67,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  font-family: 'quicksand';
+  font-family: "quicksand";
 }
 .chat form {
   display: flex;
@@ -93,4 +93,13 @@ h1:first-of-type {
   margin: auto;
   padding: 10px;
   border-radius: 10px;
+}
+.verProductos {
+  display: flex;
+}
+.productCard {
+  margin: 2%;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 2%;
 }
