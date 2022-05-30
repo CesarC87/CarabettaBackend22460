@@ -95,6 +95,18 @@ const logOut = () => {
       console.log('Error desde Script logout',error)  
     });
 }
-
+function verProductos(){
+  fetch("http://localhost:3019/api/productsEcommerce", {
+    method: "GET",
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, *same-origin, omit
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  .then(window.location.replace("/api/productsEcommerce"))
+    
+}
 // console.log('removiendo cookie')
 //   document.cookie = "user=; max-age=0";

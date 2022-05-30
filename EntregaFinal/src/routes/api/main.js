@@ -43,6 +43,14 @@ const isAuthByJWT = (req, res, next) => {
 }
 // isAuthByJWT,
 router.get('/', isAuthByJWT,(req, res, next) => {     
+    const productos = [
+        {
+            title: 'Producto 1',
+        },
+        {
+            title: 'Producto 2',
+        }
+    ]
     console.log(req.user) 
     const user = req.cookies.user
     res.render('home', {usuario: user});

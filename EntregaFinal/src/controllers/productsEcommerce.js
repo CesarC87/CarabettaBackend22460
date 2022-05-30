@@ -3,7 +3,7 @@ const { productsEcomm } = require('../models/productsEcomm');
 const getProducts = async (req, res, next) => {
   try {
     const productsList = await productsEcomm.find() 
-    !productsList ? res.status(404).json({ message: "Producto no encontrado" }) : res.status(200).json(productsList);
+    !productsList ? res.status(404).json({ message: "Producto no encontrado" }) : res.render('verProductos', { productsList: productsList })  
   } catch (error) {
     console.log(error)
   }
