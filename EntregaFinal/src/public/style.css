@@ -74,7 +74,7 @@
   flex-direction: column;
 }
 .chat form input {
-  margin: 2% auto 10%;
+  margin: 2% auto;
 }
 .chat form :last-child {
   margin: 10%;
@@ -84,13 +84,13 @@
   background-color: #28bdae;
   color: white;
 }
-h1:first-of-type {
+h1 {
   text-align: center;
   background: #26bb89;
   color: white;
   font-family: "lato";
   width: fit-content;
-  margin: auto;
+  margin: 3%;
   padding: 10px;
   border-radius: 10px;
 }
@@ -102,4 +102,15 @@ h1:first-of-type {
   border: 1px solid;
   border-radius: 5px;
   padding: 2%;
+  width: 200px;
 }
+/* h2 {
+  text-align: center;
+  background: #26bb89;
+  color: white;
+  font-family: "lato";
+  width: fit-content;
+  margin: 3%;
+  padding: 10px;
+  border-radius: 10px;
+} */
