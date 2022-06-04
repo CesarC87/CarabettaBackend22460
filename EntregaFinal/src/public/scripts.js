@@ -43,23 +43,17 @@ const levantarMensajes = (e) => {
   e.preventDefault();
   let email = document.querySelector("#email").value;
   let nombre = document.querySelector("#nombre").value;
-  let apellido = document.querySelector("#apellido").value;
-  let edad = document.querySelector("#edad").value;
-  let alias = document.querySelector("#alias").value;
-  let avatar = document.querySelector("#avatar").value;
+  let apellido = document.querySelector("#apellido").value;  
   let mensaje = document.querySelector("#mensaje").value;
 
   let userInfo = {
     author: {
       email: email,
       nombre: nombre,
-      apellido: apellido,
-      edad: edad,
-      alias: alias,
-      avatar: avatar,
+      apellido: apellido,      
     },
     text: mensaje,
-  };
+  }; 
 
   document.querySelector("#mensajesView").innerHTML = `<div>
                                                           ${userInfo.author.email} dice: ${userInfo.text}
@@ -78,6 +72,30 @@ const levantarMensajes = (e) => {
     .then((data) => console.log(data, "respuesta de data"))
     .catch((error) => console.log(error));
 };
+function renderChat(data) {
+  const html = data.map((elem, index) => {
+      return (
+          `<div>
+              <strong style="color:blue;">${elem.author}</strong> ${date.getDate()}/${date.getMonth()+1}: ${elem.text}
+          </div>`
+      )
+  }).join(" ");
+  document.querySelector("#mensajesView").innerHTML = html;
+}
+
+socket.on('messages', (data) => {
+  console.log('Desde el cliente recibiendo esta data: ' , data)
+  renderChat(data);
+})
+
+function addMessage(e) {
+const mensaje = {
+    author: document.querySelector('#nombre').value,
+    text: document.querySelector('#mensaje').value
+};
+socket.emit('new-message', mensaje);
+return false;
+}
 
 const logOut = () => {
   fetch("http://localhost:3019/api/logout", { 

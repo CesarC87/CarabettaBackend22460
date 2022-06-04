@@ -28,7 +28,7 @@
     </div>
     <h1>Chateá con un asesor</h1>
     <div class="chat">     
-        <form id="mensajes" >
+        <form id="mensajes" onsubmit="return addMessage(this)">
           <label for="email">Email</label>
           <input type="email" id="email" name="email" placeholder="pepe@argento.com" required />
           <label for="nombre">Nombre</label>
@@ -43,7 +43,7 @@
           <input type="text" id="avatar" name="avatar"  required />
           <label for="texto">Mensaje</label>
           <input type="text" id="mensaje" name="mensaje" placeholder="Mensajes aquí" />
-          <button onclick="levantarMensajes(event)">Enviar</button>
+          <button type="submit">Enviar</button>
         </form>
         <div id="mensajesView">
           Mensajes

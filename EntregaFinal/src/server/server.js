@@ -141,15 +141,16 @@ class Server {
         //         console.log('Cliente desconectado');
         //     });
         // });
+        const messages = [];
         this.io.on("connection", (socket) => {
             console.log("usuario conectado");
-            // socket.emit("messages", messages);
+            socket.emit("messages", messages);
             // socket.emit("prod-base", productos);
             
-            // socket.on("new-message", (data) => {
-            //   messages.push(data);
-            //   io.sockets.emit("messages", messages);
-            // });
+            socket.on("new-message", (data) => {
+              messages.push(data);
+              this.io.sockets.emit("messages", messages);
+            });
             // socket.on("prod-nuevos", (data) => {
             //   productos.push(data);
             //   io.sockets.emit("prod-base", productos);
