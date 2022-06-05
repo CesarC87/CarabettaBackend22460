@@ -52,4 +52,7 @@ function validar(e) {
       error.innerHTML = '<div class="error">Debe completar todos los campos</div>'
     }
   }
+  function goLogin () {
+    window.location.replace('/api/login')
+  }
   

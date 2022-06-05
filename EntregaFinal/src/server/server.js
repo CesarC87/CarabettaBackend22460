@@ -25,9 +25,7 @@ class Server {
         this.httpServer = new HttpServer(this.app);
         this.io = new SocketIO(this.httpServer);
         this.mainRoute = '/api';
-        this.mensajesRoute = '/api/mensajes';
-        this.productosRoute = '/api/productos';
-        this.productosTestRoute = '/api/productosTest';
+        this.mensajesRoute = '/api/mensajes';                
         this.productsRoute = '/api/productsEcommerce';
         this.loginRoute = '/api/login';
         this.logoutRoute = '/api/logout';
@@ -106,10 +104,8 @@ class Server {
     } 
     
     routes() {
-        this.app.use(this.mensajesRoute, require('../routes/api/mensajes'));
-        this.app.use(this.productosRoute, require('../routes/api/productos'));
-        this.app.use(this.mainRoute, require('../routes/api/main'));
-        this.app.use(this.productosTestRoute, require('../routes/api/productosTest'));
+        this.app.use(this.mensajesRoute, require('../routes/api/mensajes'));        
+        this.app.use(this.mainRoute, require('../routes/api/main'));        
         this.app.use(this.loginRoute, require('../routes/api/login'));
         this.app.use(this.logoutRoute, require('../routes/api/logout'));
         this.app.use(this.registroRoute, require('../routes/api/registro'));

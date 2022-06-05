@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const { User } = require('../../models/users');
-const jwt = require('jsonwebtoken');
+const { isAuthByJWT } = require('../../middleware/isAuthByJWT');
 // app.use(express.urlencoded({ extended: true }));
 
 // router.post("/", (req, res, next) => {    
@@ -19,39 +18,30 @@ const jwt = require('jsonwebtoken');
 //     console.log(usuario) 
 //     res.render('home', {usuario:usuario})
 // }) 
-const isAuthByJWT = (req, res, next) => {
-    // const authHeader = req.headers['authorization'];
-    // const token = authHeader && authHeader.split(' ')[1];
-    // console.log('authHeader es:',authHeader)
-    const token = req.cookies.token;
-    const secretWord = process.env.SECRET;   
-    if(token == null) {
-        res.redirect('/api/login');    
-        return res.sendStatus(401);
-    }        
+// export const isAuthByJWT = (req, res, next) => {
+//     // const authHeader = req.headers['authorization'];
+//     // const token = authHeader && authHeader.split(' ')[1];
+//     // console.log('authHeader es:',authHeader)
+//     const token = req.cookies.token;
+//     const secretWord = process.env.SECRET;   
+//     if(token == null) {
+//         res.redirect('/api/login');    
+//         return res.sendStatus(401);
+//     }        
 
-    jwt.verify(token, secretWord, (err, user) => {
-        if(err) {
-            res.clearCookie('token')
-            res.clearCookie('user')
-            res.redirect('/api/login');  
-            return res.sendStatus(403); 
-        }
-        req.user = user;
-        next();
-    });
-}
+//     jwt.verify(token, secretWord, (err, user) => {
+//         if(err) {
+//             res.clearCookie('token')
+//             res.clearCookie('user')
+//             res.redirect('/api/login');  
+//             return res.sendStatus(403); 
+//         }
+//         req.user = user;
+//         next();
+//     });
+// }
 // isAuthByJWT,
-router.get('/', isAuthByJWT,(req, res, next) => {     
-    const productos = [
-        {
-            title: 'Producto 1',
-        },
-        {
-            title: 'Producto 2',
-        }
-    ]
-    console.log(req.user) 
+router.get('/', isAuthByJWT,(req, res, next) => {       
     const user = req.cookies.user
     res.render('home', {usuario: user});
 })

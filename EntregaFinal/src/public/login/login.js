@@ -46,3 +46,7 @@ let userInfo = {
     error.innerHTML = '<div class="error">Debe completar todos los campos</div>'
   }
 }
+
+function goRegister () {
+  window.location.replace('/api/registro')
+}

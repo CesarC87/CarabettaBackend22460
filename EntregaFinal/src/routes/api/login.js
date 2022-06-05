@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const { JWTlogin } = require('../../controllers/login');
 const path = require('path');
 
-// router.get("/", isAuth, (req, res, next) => {
+// router.get("/", isAuth, (req, res, next) => {                             --> Esto es para Passport
 //     res.sendFile(path.join(__dirname, '../../public/login/login.html'));
 //    });
 // router.post("/", passport.authenticate('login', { failureRedirect: '/loginFail', successRedirect: '/'}))
